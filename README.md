@@ -48,3 +48,6 @@ README〜ER図作成：5/4 〆切
 - Rails7
 - Bootstrap
 - AWS rekognition API
+
+## ■画面遷移図
+https://www.figma.com/file/1NtPniGHFWMtQLQP85AwAs/%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA?node-id=0%3A1&t=71fjkiJdGb8YCx2M-1
