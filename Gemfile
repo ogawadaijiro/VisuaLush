@@ -48,4 +48,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'bootstrap'
+gem 'font-awesome-sass', '~> 5.12.0'
 gem 'jquery-rails'
+gem "sorcery", "~> 0.16.5"
