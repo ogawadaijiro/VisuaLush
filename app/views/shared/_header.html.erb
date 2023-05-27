@@ -5,10 +5,17 @@
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
       <strong>VisuaLush</strong>
     <% end %>
-    <div class="text-end">
-      <button type="button" class="btn btn-outline-light me-2">ログイン</button>
-      <%= link_to 'サインアップ', new_user_path, class: 'btn btn-warning' %>
-    </div>
+    <% if logged_in? %> 
+      <div class="text-end">
+        <%= link_to 'ログアウト', new_user_session_path, method: :delete, class: 'btn btn-outline-light me-2' %>
+        <%= link_to 'サインアップ', new_user_path, class: 'btn btn-warning' %>
+      </div>
+    <% else %>
+      <div class="text-end">
+        <%= link_to 'ログイン', new_user_session_path, class: 'btn btn-outline-light me-2' %>
+        <%= link_to 'サインアップ', new_user_path, class: 'btn btn-warning' %>
+      </div>
+    <% end %>
   </div>
 </div>
 </header>
