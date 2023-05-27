@@ -14,8 +14,8 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Create Account</h5>
-                    <p class="text-center small">Enter your username & password to login</p>
+                    <h5 class="card-title text-center pb-0 fs-4">アカウント作成</h5>
+                    <p class="text-center small">既にアカウントがある方はこちら<%=link_to 'ログイン', new_user_session_path %></p>
                   </div>
 
                   <%= form_with model: @user, local: true, html: {class: "row g-3 needs-validation" }  do |f| %>
