@@ -51,3 +51,5 @@ gem 'bootstrap'
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'jquery-rails'
 gem "sorcery", "~> 0.16.5"
+gem 'carrierwave'
+gem 'fog-aws'
