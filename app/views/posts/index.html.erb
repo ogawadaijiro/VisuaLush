@@ -22,7 +22,7 @@
                     <button type="button" class="btn btn-sm btn-outline-secondary"><%= link_to 'View', post_path(post) %></button>
                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                   </div>
-                  <small class="text-muted"><%= post.user.name %></small>
+                  <small class="text-muted"><%= link_to post.user.name, user_path(post.user) %></small>
                 </div>
               </div>
             </div>

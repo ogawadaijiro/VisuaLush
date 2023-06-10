@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   root "tops#index"
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :show, :edit, :update] do
+  end
   resources :user_sessions, only: [:new, :create, :destroy]
   resources :posts
 end
