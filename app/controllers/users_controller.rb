@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @posts = @user.posts.order(created_at: :desc)
   end
 
-  def edit; end
+  def edit;end
 
   def update
     if @user.update(user_params)
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar, :profile)
   end
 
   def set_user
