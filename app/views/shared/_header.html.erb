@@ -14,8 +14,8 @@
     <% else %>
       <div class="text-end">
         <%= link_to 'ログイン', new_user_session_path, class: 'btn btn-outline-light me-2' %>
-        <%= link_to 'サインアップ', new_user_path, class: 'btn btn-warning' %>
-        <%= image_tag current_user.avatar.thumb.url, class: 'img-profile rounded-circle me-2', size: '50x50' %>
+        <%= link_to 'サインアップ', new_user_path, class: 'btn btn-warning me-2' %>
+        <%= image_tag 'default.png', class: 'img-profile rounded-circle', size: '50x50' %>
       </div>
     <% end %>
   </div>
