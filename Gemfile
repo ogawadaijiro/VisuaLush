@@ -53,3 +53,4 @@ gem 'jquery-rails'
 gem "sorcery", "~> 0.16.5"
 gem 'carrierwave'
 gem 'fog-aws'
+gem 'mini_magick'

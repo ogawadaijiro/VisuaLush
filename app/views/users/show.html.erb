@@ -2,7 +2,7 @@
 <!-- Header - set the background image for the header in the line below-->
 <header class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/wfh8dDlNFOk/1600x900')">
     <div class="text-center my-5">
-        <img class="img-fluid rounded-circle mb-4" src="https://dummyimage.com/150x150/6c757d/dee2e6.jpg" alt="..." />
+        <%= image_tag @user.avatar.thumb.url, class: 'img-fluid rounded-circle mb-4', size: '150x150' %>
         <div class="d-flex justify-content-center align-items-center">
         <h1 class="text-white fs-3 fw-bolder"><%= @user.name %></h1>
         <%= link_to edit_user_path(@user), class: "mx-2" do %>
@@ -10,7 +10,7 @@
         <% end %>
         </div>
          
-        <p class="text-white-50 mb-0">Landing Page Template</p>
+        <p class="text-white-50 mb-0"><%= @user.profile&.scan(/.{1,20}/)&.join("<br>").to_s.html_safe %></p>
     </div>
 </header>
 <div class="album py-5 bg-light">

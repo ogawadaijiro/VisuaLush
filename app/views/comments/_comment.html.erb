@@ -1,0 +1,14 @@
+<tr id="comment-<%= comment.id %>">
+  <td style="width: 60px">
+    <%= image_tag comment.user.avatar.thumb.url, class: 'rounded-circle', size: '50x50' %>
+  </td>
+  <td>
+    <h3 class="small"><%= comment.user.name %></h3>
+    <div id="js-comment-<%= comment.id %>">
+      <%= simple_format(comment.body) %>
+    </div>
+    <div id="js-textarea-comment-box-<%= comment.id %>" style="display: none;">
+      <textarea id="js-textarea-comment-<%= comment.id %>" class="form-control mb-1"><%= comment.body %></textarea>
+    </div>
+  </td>
+</tr>

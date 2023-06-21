@@ -2,6 +2,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, UserAvatarUploader
   authenticates_with_sorcery!
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 20, allow_blank: true }
   validates :email, uniqueness: true, presence: true

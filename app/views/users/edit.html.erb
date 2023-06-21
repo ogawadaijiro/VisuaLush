@@ -20,7 +20,7 @@
 
               <%= form_with model: @user, local: true, html: {class: "row g-3 needs-validation" }  do |f| %>
                 <div class="col-12 d-flex justify-content-center">
-                <%= image_tag @user.avatar.url,
+                <%= image_tag @user.avatar.thumb.url,
                               class: 'rounded-circle',
                               size: '100x100' %>
                 </div>

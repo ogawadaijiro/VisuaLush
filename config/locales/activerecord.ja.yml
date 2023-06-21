@@ -17,3 +17,5 @@ ja:
         description: 説明
         created_at: 投稿日時
         updated_at: 更新日時
+      comment:
+        body: コメント
