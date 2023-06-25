@@ -8,9 +8,22 @@
     </header>
 
     <%= image_tag @post.image.url, class: "container-a bg-light", size: '500x500', alt: "http://www.w3.org/2000/svg" %>
-      <div class="container-fluid py-5">
-      </div>
   </div>
+  <div class="container-b pb-4">
+    <div class="text-end">
+      <% if @post.liked?(current_user) %>
+        <%= link_to post_like_path(@post.id), method: :delete do %>
+         <i class="fas fa-heart"></i>
+        <% end %>
+      <% else %>
+        <%= link_to post_likes_path(@post.id), method: :post do %>
+         <i class="far fa-heart"></i>
+        <% end %>
+      <% end %>
+    </div>
+    <%= @post.description %>
+  </div>
+
 
   <%= render 'comments/form', { post: @post, comment: @comment } %>
 
