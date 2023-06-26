@@ -11,15 +11,7 @@
   </div>
   <div class="container-b pb-4">
     <div class="text-end">
-      <% if @post.liked?(current_user) %>
-        <%= link_to post_like_path(@post.id), method: :delete do %>
-         <i class="fas fa-heart"></i>
-        <% end %>
-      <% else %>
-        <%= link_to post_likes_path(@post.id), method: :post do %>
-         <i class="far fa-heart"></i>
-        <% end %>
-      <% end %>
+      <%= render 'posts/like_button', post: @post %>
     </div>
     <%= @post.description %>
   </div>
