@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   root "tops#index"
 
   resources :users, only: [:new, :create, :show, :edit, :update] do
+    resource :relationships, only: [:create, :destroy]
+    get :followings, on: :collection, as: :followings
+    get :followers, on: :collection, as: :followers
   end
   resources :user_sessions, only: [:new, :create, :destroy]
   resources :posts do
