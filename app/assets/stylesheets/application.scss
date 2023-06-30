@@ -16,3 +16,8 @@
 @import 'font-awesome';
 @import 'bootstrap';
 @import 'style';
+
+.bg-image-full {
+  background-image: image-url('image.jpg');
+  background-size: cover;
+}
