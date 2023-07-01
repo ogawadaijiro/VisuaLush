@@ -10,7 +10,7 @@
     <div class="container">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <% @posts.each do |post| %>
+        <% @ranked_posts.each do |post| %>
           <div class="col">
             <div class="card shadow-sm">
               <%= image_tag post.image.url, class: "bd-placeholder-img card-img-top", width: "100%", height: "225", alt: "http://www.w3.org/2000/svg" %>
@@ -31,4 +31,3 @@
       </div>
     </div>
   </div>
-

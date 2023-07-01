@@ -5,6 +5,10 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
+  def ranking
+    @ranked_posts = Post.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
+  end
+
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
