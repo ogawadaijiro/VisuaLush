@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[edit update destroy]
 
   def index
-    @posts = Post.all
+    @posts = Post.includes(:user).order(created_at: :desc)
   end
 
   def ranking
@@ -21,7 +21,9 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    tag_list = params[:post][:tag_names].split(',')
     if @post.save
+      @post.save_tags(tag_list)
       redirect_to posts_path, success: '投稿しました'
     else
       flash.now[:danger] = '投稿に失敗しました'
@@ -33,6 +35,8 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
+      tag_list = params[:post][:tag_names].split(',')
+      @post.save_tags(tag_list)
       redirect_to posts_path, success: '更新しました'
     else
       flash.now[:danger] = '更新に失敗しました'
@@ -48,10 +52,11 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :description)
+    params.require(:post).permit(:image, :description, :tag_names)
   end
 
   def set_post
     @post = current_user.posts.find(params[:id])
   end
+
 end

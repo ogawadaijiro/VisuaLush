@@ -30,6 +30,11 @@
                 </div>
 
                 <div class="col-12">
+                <%= f.label :tag_names, class: 'form-label' %>
+                <%= f.text_field :tag_names, placeholder: ',で区切ると複数登録できます', class: 'form-control' %>
+                </div>
+
+                <div class="col-12">
                   <%= f.submit "投稿する", class: 'btn btn-primary w-100' %>
                 </div>
                 <div class="col-12">
