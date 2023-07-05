@@ -2,11 +2,11 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[edit update destroy]
 
   def index
-    @posts = Post.includes(:user).order(created_at: :desc)
+    @posts = Post.includes(:user, :tags).order(created_at: :desc).page(params[:page]).per(9)
   end
 
   def ranking
-    @ranked_posts = Post.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
+    @ranked_posts = Post.includes(:user, :tags).left_joins(:likes).group(:id).order('COUNT(likes.id) DESC').page(params[:page]).per(9)
   end
 
   def show
