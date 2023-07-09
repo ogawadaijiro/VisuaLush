@@ -30,4 +30,12 @@ class User < ApplicationRecord
   def own?(object)
     id == object.id
   end
+
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name"]
+  end
 end

@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[edit update destroy]
 
   def index
-    @posts = Post.includes(:user, :tags).order(created_at: :desc).page(params[:page]).per(9)
+    @q = Post.ransack(params[:q])
+    @posts = @q.result.includes(:user, :tags).order(created_at: :desc).page(params[:page]).per(9)
   end
 
   def ranking

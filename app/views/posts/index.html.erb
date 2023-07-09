@@ -5,6 +5,12 @@
       <%= link_to "ランキング", ranking_posts_path, class: "btn btn-secondary my-2" %>
     </p>
   </div>
+  <div>
+    <%= search_form_for @q, html: { class: "d-flex justify-content-center" } do |f| %>
+      <%= f.search_field :user_name_or_tags_name_cont, class: "form-control me-2 w-25", placeholder: "キーワードを入力" %>
+      <%= f.submit "検索", class: "btn btn-outline-success" %>
+    <% end %>
+  </div>
 </section>
   <div class="album py-5 bg-light">
     <div class="container">
