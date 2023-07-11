@@ -23,15 +23,17 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     tag_list = params[:post][:tag_names].split(',')
+  
     if @post.save
       @post.save_tags(tag_list)
+      ImageRecognitionJob.perform_later(@post.id)
       redirect_to posts_path, success: '投稿しました'
     else
       flash.now[:danger] = '投稿に失敗しました'
       render :new
     end
   end
-
+  
   def edit; end
 
   def update

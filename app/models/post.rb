@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
   attr_accessor :tag_names
+  require 'aws-sdk-rekognition'
+
 
   mount_uploader :image, ImageUploader
   belongs_to :user
@@ -21,7 +23,6 @@ class Post < ApplicationRecord
       self.tags << tag
     end
   end
-
 
   def self.ransackable_attributes(auth_object = nil)
     []
