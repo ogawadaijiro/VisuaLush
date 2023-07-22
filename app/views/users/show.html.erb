@@ -1,47 +1,73 @@
-<body>
-<!-- Header - set the background image for the header in the line below-->
-<header class="py-5 bg-image-full">
-    <div class="text-center my-5">
-      <%= image_tag @user.avatar.thumb.url, class: 'img-fluid rounded-circle mb-4', size: '150x150' %>
-      <div class="d-flex justify-content-center align-items-center">
-        <h1 class="text-white fs-3 fw-bolder"><%= @user.name %></h1>
-      </div>
-      <div class="d-flex justify-content-center align-items-center">
-        <% if current_user.own?(@user) %>
-          <%= link_to edit_user_path(@user), class: "mx-2" do %>
-            <i class="fas fa-pen"></i>
-          <% end %>
-        <% else %>
-          <%= render 'users/follow_button', user: @user %>
-        <% end %>
-
-      </div>
-         
-        <p class="text-white-50 mb-0"><%= @user.profile&.scan(/.{1,20}/)&.join("<br>").to_s.html_safe %></p>
+<div class="max-w-2xl sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 rounded-lg text-gray-900">
+    <div class="mx-auto w-32 h-32 relative -mt-10 border-4 border-white rounded-full overflow-hidden">
+        <%= image_tag @user.avatar.thumb.url, class: "object-cover object-center h-32" %>
     </div>
-</header>
-<div class="album py-5 bg-light">
-<div class="container">
+    <div class="text-center mt-2">
+        <h2 class="font-semibold"><%= @user.name %></h2>
+        <p class="text-gray-500"><%= @user.profile %></p>
+    </div>
+    <ul class="py-4 mt-2 text-gray-700 flex items-center justify-around">
+        <li class="flex flex-col items-center justify-around">
+            <svg class="w-4 fill-current text-blue-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <span>フォロー中</span>
+            </svg>
+            <div><%= @user.followings.count %></div>
+        </li>
+        <li class="flex flex-col items-center justify-around">
+            <svg class="w-4 fill-current text-blue-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <span>フォロワー</span>
+            </svg>
+            <div><%= @user.followers.count %></div>
+        </li>
+    </ul>
+    <div class="p-4 border-t mx-8 mt-2 text-center">
+     <% if @user == current_user %>
+      <%= link_to "編集", edit_user_path(@user), class: 'w-1/2 block mx-auto rounded-full bg-gray-600 hover:shadow-lg font-semibold text-white px-6 py-2' %>
+     <% else %>
+      <%= render 'users/follow_button', user: @user %>
+    <% end %>
+    </div>
+</div>
 
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-    <% @posts.each do |post| %>
-      <div class="col">
-        <div class="card shadow-sm">
-          <%= image_tag post.image.url, class: "bd-placeholder-img card-img-top", width: "100%", height: "225", alt: "http://www.w3.org/2000/svg" %>
-
-          <div class="card-body">
-            <p class="card-text"><%= post.description %></p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary"><%= link_to 'View', post_path(post) %></button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-15 mx-auto">
+    <div class="flex flex-wrap -m-4">
+      <% @posts.each do |post| %>
+        <div class="p-4 md:w-1/3">
+          <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+            <%= image_tag post.image.url, class: "lg:h-48 md:h-36 w-full object-cover object-center", alt: "Post image" %>
+            <div class="p-6">
+              <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1"><%= post.user.name %></h2>
+              <div class="flex space-x-2">
+              <% post.tags.each do |tag| %>
+                <h1 class="title-font text-lg font-medium text-gray-900 mb-3">#<%= tag.name %></h1>
+              <% end %>
               </div>
-              <small class="text-muted"><%= link_to post.user.name, user_path(post.user) %></small>
+              <p class="leading-relaxed mb-3"><%= post.description %></p>
+              <div class="flex items-center flex-wrap ">
+                <button type="button" class="text-green-500 inline-flex items-center md:mb-2 lg:mb-0">
+                  <%= link_to 'Learn More', post_path(post) %>
+                <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5l7 7-7 7"></path>
+                </svg>
+                </button>
+                <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                  <div class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <i class="far fa-heart"></i>
+                  </div><%= post.likes.count %>
+                </span>
+                <span class="text-gray-400 inline-flex items-center leading-none text-sm">
+                  <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                  </svg><%= post.comments.count %>
+                </span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
+    <%= paginate @posts %>
   </div>
-</div>
-</body>
+</section>

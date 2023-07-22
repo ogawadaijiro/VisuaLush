@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: %i[new create show edit update]
   before_action :set_user, only: %i[show edit update destroy]
   # User registration
   def new
@@ -7,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @posts = @user.posts.order(created_at: :desc)
+    @posts = @user.posts.order(created_at: :desc).page(params[:page]).per(9)
   end
 
   def edit;end

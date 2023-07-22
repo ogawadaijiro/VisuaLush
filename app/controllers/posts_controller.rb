@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[edit update destroy]
+  before_action :require_login, only: %i[show edit update destroy]
 
   def index
     @q = Post.ransack(params[:q])
@@ -12,6 +13,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @user = @post.user
     @comment = Comment.new
     @comments = @post.comments.includes(:user).order(created_at: :desc)
   end

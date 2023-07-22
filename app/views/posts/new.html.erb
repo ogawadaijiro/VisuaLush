@@ -1,57 +1,28 @@
-<main>
-<div class="container">
-
-  <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
-          <div class="d-flex justify-content-center py-4">
+<section class="bg-gray-50 dark:bg-gray-900">
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1 class=" text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                  投稿作成
+              </h1>
+                <%= form_with model: @post, local: true, html: {class: "row g-3 needs-validation space-y-4 md:space-y-4" }  do |f| %>
+                  <div>
+                      <%= f.label :image, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+                      <%= f.file_field :image, class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+                  </div>
+                  <div>
+                     <%= f.label :description, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+                     <%= f.text_area :description, class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+                  </div>
+                  <div>
+                    <%= f.label :tag_names, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+                    <%= f.text_field :tag_names, placeholder: ',で区切ると複数登録できます', class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+                  </div>
+                  <div>
+                  <%= f.submit "投稿する", class: 'w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' %>
+                  </div>
+                <% end %>
           </div>
-
-          <div class="card mb-3">
-
-            <div class="card-body">
-
-              <div class="pt-4 pb-2">
-                <h5 class="card-title text-center pb-0 fs-4">投稿作成</h5>
-                <p class="text-center small"></p>
-              </div>
-
-              <%= form_with model: @post, local: true, html: {class: "row g-3 needs-validation" }  do |f| %>
-                <div class="col-12">
-                  <%= f.label :image, class: 'form-label' %>
-                  <%= f.file_field :image, class: 'form-control' %>
-                </div>
-
-                <div class="col-12">
-                  <%= f.label :description, class: 'form-label' %>
-                  <%= f.text_area :description, class: 'form-control' %>
-                </div>
-
-                <div class="col-12">
-                <%= f.label :tag_names, class: 'form-label' %>
-                <%= f.text_field :tag_names, placeholder: ',で区切ると複数登録できます', class: 'form-control' %>
-                </div>
-
-                <div class="col-12">
-                  <%= f.submit "投稿する", class: 'btn btn-primary w-100' %>
-                </div>
-                <div class="col-12">
-                </div>
-              <% end %>
-
-            </div>
-          </div>
-
-          <div class="credits">
-          </div>
-
-        </div>
       </div>
-    </div>
-
-  </section>
-
-</div>
-</main>
+  </div>
+</section>

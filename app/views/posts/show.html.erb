@@ -1,24 +1,28 @@
-<main>
-  <div class="container py-4">
-    <header class="pb-3 mb-4 border-bottom">
-      <div class="d-flex align-items-center text-dark text-decoration-none">
-        <%= image_tag current_user.avatar.thumb.url, class: 'img-profile rounded-circle me-2', size: '50x50' %>
-        <span class="fs-4"><%= link_to @post.user.name, posts_path %></span>
-      </div>
-    </header>
-
-    <%= image_tag @post.image.url, class: "container-a bg-light", size: '500x500', alt: "http://www.w3.org/2000/svg" %>
-  </div>
-  <div class="container-b pb-4">
-    <div class="text-end">
-      <%= render 'posts/like_button', post: @post %>
+<section class="text-gray-600 body-font">
+  <div class="container mx-auto flex flex-col px-5 py-24 justify-center items-center">
+    <%= image_tag @post.image.url, class: "lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" %>
+    <div class="w-full md:w-2/3 flex flex-col mb-16 items-center text-center">
+    <h1 class="text-gray-900 text-3xl title-font font-medium mb-1"><%= link_to @post.user.name, user_path(@post.user) %></h1>
+    <div class="flex mb-4">
+      <span class="flex items-center">
+        <%= render 'users/follow_button', user: @user %>
+      </span>
+      <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
+        <div class="text-gray-500">
+        <%= render 'posts/like_button', class: "w-5 h-5", post: @post %>
+        </div>
+      </span>
     </div>
-    <%= @post.description %>
+    <% @post.tags.each do |tag| %>
+    <h2 class="text-sm title-font text-gray-500 tracking-widest">#<%= tag.name %></h2>
+    <% end %>
+    <p class="leading-relaxed"><%= @post.description %></p>
   </div>
-
-
+</section>
+<section class="bg-white dark:bg-gray-900 py-8 lg:py-16">
+ <div class="max-w-2xl mx-auto px-4">
   <%= render 'comments/form', { post: @post, comment: @comment } %>
-
   <%= render 'comments/comments', { comments: @comments } %>
-</main>
+ </div>
+</section>
 
