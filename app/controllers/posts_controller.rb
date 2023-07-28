@@ -51,7 +51,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy!
-    redirect_to posts_path, success: '削除しました'
+    redirect_to user_path(@post.user), success: '削除しました'
   end
 
   private

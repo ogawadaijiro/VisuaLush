@@ -37,6 +37,9 @@
           <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
             <%= image_tag post.image.url, class: "lg:h-48 md:h-36 w-full object-cover object-center", alt: "Post image" %>
             <div class="p-6">
+              <% if @user == current_user %>
+              <%= link_to '<i class="far fa-trash-alt"></i>'.html_safe, post_path(post), method: :delete, data: { confirm: '投稿を削除しますか？' } %>
+              <% end %>
               <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1"><%= post.user.name %></h2>
               <div class="flex space-x-2">
               <% post.tags.each do |tag| %>
@@ -68,6 +71,8 @@
         </div>
       <% end %>
     </div>
+    <div class="m-4">
     <%= paginate @posts %>
+    </div>
   </div>
 </section>
