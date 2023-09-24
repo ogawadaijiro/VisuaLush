@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :show, :edit, :update] do
     resource :relationships, only: [:create, :destroy]
-    get :followings, on: :collection, as: :followings
-    get :followers, on: :collection, as: :followers
+    get :followings, on: :member, as: :followings
+    get :followers, on: :member, as: :followers
   end
   resources :user_sessions, only: [:new, :create, :destroy]
   resources :posts do

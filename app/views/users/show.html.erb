@@ -8,15 +8,19 @@
     </div>
     <ul class="py-4 mt-2 text-gray-700 flex items-center justify-around">
         <li class="flex flex-col items-center justify-around">
+          <%= link_to followings_user_path(@user) do %>
             <svg class="w-4 fill-current text-blue-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
               <span>フォロー中</span>
             </svg>
+          <% end %>
             <div><%= @user.followings.count %></div>
         </li>
         <li class="flex flex-col items-center justify-around">
+          <%= link_to followers_user_path(@user) do %>
             <svg class="w-4 fill-current text-blue-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
               <span>フォロワー</span>
             </svg>
+          <% end %>
             <div><%= @user.followers.count %></div>
         </li>
     </ul>

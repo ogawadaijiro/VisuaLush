@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update destroy]
+  before_action :set_user, only: %i[show edit update destroy followings followers]
   # User registration
   def new
     @user = User.new
@@ -10,6 +10,14 @@ class UsersController < ApplicationController
   end
 
   def edit;end
+
+  def followings
+    @users = @user.followings
+  end
+
+  def followers
+    @users = @user.followers
+  end
 
   def update
     if @user.update(user_params)
